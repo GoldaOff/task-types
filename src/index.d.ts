@@ -1,21 +1,19 @@
-/*
-Типизируйте функцию getPersons, возвращающую массив объектов со следующими свойствами:
-- name - строка
-- age - число
-- gender - 'male' или 'female'
- */
-export function getPersons();
+export type Gender = 'male' | 'female';
 
-/*
-Типизируйте функцию personToString, возвращающую строку и принимающую объект одного из следующих форматов:
-   1. Пользователь:
-   - name - строка
-   - age - число
-   - gender - 'male' или 'female'
-   2. Сотрудник
-   - name - строка
-   - age - число
-   - gender - 'male' или 'female'
-   - company- строка
- */
-export function personToString(person);
+export type Person = {
+    name: string;
+    age: number;
+    gender: Gender;
+};
+
+export type Employee = Person & {
+    company: string;
+};
+
+type PersonInput =
+    | { name: string; age: number; gender: Gender }
+    | { name: string; age: number; gender: Gender; company: string };
+
+export declare function getPersons(): Person[];
+
+export declare function personToString(person: PersonInput): string;
